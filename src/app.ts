@@ -14,9 +14,14 @@ connection.connect();
 
 app.get("/api/characters", (req: Request, res: Response) => {
   const query = "Select * from Characters";
+
   connection.query(query, (err, rows) => {
     if (err) throw err;
-    return res.send(rows);
+    const retVal = {
+      data: rows,
+      message: rows.length === 0 ? "No Record Found" : "",
+    };
+    return res.send(retVal);
   });
 });
 
