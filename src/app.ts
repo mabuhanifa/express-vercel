@@ -22,7 +22,15 @@ app.get("/api/characters", (req: Request, res: Response) => {
 
 app.get("/api/characters/:id", (req: Request, res: Response) => {
   const id = req.params.id;
-  res.send(`It working from ${id}`);
+  const query = `Select * FROM Characters WHERE ID = "${id}" LIMIT 1`;
+  connection.query(query, (err, rows) => {
+    if (err) throw err;
+    const retVal = {
+      data: rows.length > 0 ? rows[0] : null,
+      message: rows.length === 0 ? "No Record Found" : "",
+    };
+    return res.send(retVal);
+  });
 });
 
 app.listen(port, () => {
