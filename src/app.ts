@@ -1,1 +1,3 @@
-console.log("hello word");
+import express from "express";
+
+const app = express();
