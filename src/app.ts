@@ -9,11 +9,15 @@ app.use(express.json());
 app.use(cors());
 const port = process.env.PORT || 3000;
 const connectionString = process.env.DATABASE_URL || "";
-const connection = mysql.createConnection;
+const connection = mysql.createConnection(connectionString);
+connection.connect();
 
 app.get("/api/characters", (req: Request, res: Response) => {
   const query = "Select * from Characters";
-  res.send("It working");
+  connection.query(query, (err, rows) => {
+    if (err) throw err;
+    return res.send(rows);
+  });
 });
 
 app.get("/api/characters/:id", (req: Request, res: Response) => {
