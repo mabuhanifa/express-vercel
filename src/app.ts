@@ -19,7 +19,7 @@ app.get("/api/characters", (req: Request, res: Response) => {
     if (err) throw err;
     const retVal = {
       data: rows,
-      message: rows.length === 0 ? "No Record Found" : "",
+      message: rows.length === 0 ? "No Record Found" : "Success",
     };
     return res.send(retVal);
   });
@@ -32,7 +32,7 @@ app.get("/api/characters/:id", (req: Request, res: Response) => {
     if (err) throw err;
     const retVal = {
       data: rows.length > 0 ? rows[0] : null,
-      message: rows.length === 0 ? "No Record Found" : "",
+      message: rows.length === 0 ? "No Record Found" : "Success",
     };
     return res.send(retVal);
   });
