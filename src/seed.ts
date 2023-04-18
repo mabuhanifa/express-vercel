@@ -9,7 +9,7 @@ const connectionString = process.env.DATABASE_URL || "";
 const connection = mysql.createConnection(connectionString);
 connection.connect();
 
-const getCharacterPageName = async () => {
+const getCharacterPageNames = async () => {
   const url =
     "https://throneofglass.fandom.com/wiki/Category:Kingdom_of_Ash_characters";
   const { data } = await axios.get(url);
@@ -30,5 +30,13 @@ const getCharacterPageName = async () => {
   }
   return characterPageNames;
 };
+const getCharacterInfo = async (characterName: string) => {};
 
-getCharacterPageName();
+const loadCharacters = async () => {
+  const characterPageNames = await getCharacterPageNames();
+  for (let i = 0; i < characterPageNames.length; i++) {
+    const characterInfo = await getCharacterInfo(characterPageNames[i]);
+  }
+};
+
+getCharacterPageNames();
