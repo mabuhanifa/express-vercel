@@ -2,7 +2,10 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 const blogRoute = require("./routes/blog.route");
+const { connectDB } = require("./config/db");
 app.use(express.json());
+connectDB();
+
 app.use("/blog", blogRoute);
 
 app.get("/", (req, res) => {
