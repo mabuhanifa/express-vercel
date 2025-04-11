@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 const blogRoute = require("./routes/blog.route");
-
+app.use(express.json());
 app.use("/blog", blogRoute);
 
 app.get("/", (req, res) => {
