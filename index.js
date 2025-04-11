@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
+const blogRoute = require("./routes/blog.route");
+
+app.use("/blog", blogRoute);
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello from Vercel!" });
