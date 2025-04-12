@@ -1,9 +1,13 @@
 const express = require("express");
 const app = express();
+require("dotenv").config();
 const port = process.env.PORT || 3000;
 const blogRoute = require("./routes/blog.route");
 const movieRoute = require("./routes/movie.route");
+const cors = require("cors");
 const { connectDB } = require("./config/db");
+
+app.use(cors());
 app.use(express.json());
 connectDB();
 
