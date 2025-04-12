@@ -1,12 +1,11 @@
 const { Router } = require("express");
-const { createMovies } = require("../controllers/movie.controller");
+const {
+  createMovies,
+  getAllMovies,
+} = require("../controllers/movie.controller");
 
 const router = Router();
 
-router
-  .get("/", (req, res) => {
-    res.json({ message: "Movies route" });
-  })
-  .post("/", createMovies);
+router.get("/", getAllMovies).post("/", createMovies);
 
 module.exports = router;

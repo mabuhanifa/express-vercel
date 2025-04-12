@@ -37,6 +37,9 @@ const MovieSchema = new Schema(
     remarks: {
       type: String,
     },
+    position: {
+      type: Number,
+    },
   },
   {
     timestamps: true,
