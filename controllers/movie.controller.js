@@ -19,7 +19,20 @@ const getAllMovies = async (req, res) => {
   }
 };
 
+const getMovieImages = async (req, res) => {
+  try {
+    const movies = await Movie.find().select("images");
+    if (!movies) {
+      return res.status(404).json({ message: "Movie not found" });
+    }
+    res.status(200).json(movies);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   createMovies,
   getAllMovies,
+  getMovieImages,
 };
