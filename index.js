@@ -4,6 +4,7 @@ require("dotenv").config();
 const port = process.env.PORT || 3001;
 const blogRoute = require("./routes/blog.route");
 const movieRoute = require("./routes/movie.route");
+const photographyRoute = require("./routes/photography.route");
 const cors = require("cors");
 const { connectDB } = require("./config/db");
 
@@ -13,6 +14,7 @@ connectDB();
 
 app.use("/blog", blogRoute);
 app.use("/movie", movieRoute);
+app.use("/photo", photographyRoute);
 
 app.get("/", (req, res) => {
   res.json({ message: "Bonjour mon ami!" });
